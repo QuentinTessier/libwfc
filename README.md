@@ -46,15 +46,10 @@ If you want to test the correctness of the library on your system, run `make tes
 To get the library up and running in a Zig project is quite simple.
 This version has been tested using Zig 0.13.0.
 
-In `build.zig.zon`:
+In your terminal:
 
-```zig
-.dependencies = .{
-    .wfc = .{
-        .path = "https://github.com/QuentinTessier/libwfc/archive/${COMMIT_HASH}.tar.gz",
-        .hash = "...", // Run a build without the hash field, the compiler will complain with the good hash value
-    },
-}
+```
+zig fetch --save=wfc https://github.com/QuentinTessier/libwfc/archive/${COMMIT_HASH}.tar.gz
 ```
 
 In `build.zig`:

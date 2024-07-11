@@ -1,0 +1,16 @@
+.{
+    .name = "libwfc",
+    .version = "0.1.0",
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{},
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "wfc.c",
+        "wfc.h",
+        "wfc.zig",
+        "Makefile",
+        "LICENSE",
+        "README.md",
+    },
+}
