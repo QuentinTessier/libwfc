@@ -41,6 +41,29 @@ There are other functions and ways of running WFC, check out the giant comment n
 
 If you want to test the correctness of the library on your system, run `make test`.
 
+### Zig
+
+To get the library up and running in a Zig project is quite simple.
+This version has been tested using Zig 0.13.0.
+
+In `build.zig.zon`:
+
+```zig
+.dependencies = .{
+    .wfc = .{
+        .path = "https://github.com/QuentinTessier/libwfc/archive/${COMMIT_HASH}.tar.gz",
+        .hash = "...", // Run a build without the hash field, the compiler will complain with the good hash value
+    },
+}
+```
+
+In `build.zig`:
+```zig
+    const wfc_dep = b.dependency("wfc", .{});
+    const wfc = wfc_dep.module("wfc");
+    exe.root_module.addImport("wfc", module);
+```
+
 ## How to use CLI and GUI tools
 
 ### Building
