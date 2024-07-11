@@ -64,6 +64,45 @@ In `build.zig`:
     exe.root_module.addImport("wfc", module);
 ```
 
+In your source:
+```zig
+
+    const wfc = @import("wfc");
+
+    pub fn main() anyerror!void {
+        var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+        defer _ = gpa.deinit();
+
+        const allocator = gpa.allocator();
+
+        var prng = std.rand.DefaultPrng.init(blk: {
+            var seed: u64 = undefined;
+            try std.posix.getrandom(std.mem.asBytes(&seed));
+            break :blk seed;
+        });
+        const rng = prng.random();
+
+        _ = wfc.init(allocator, rng);
+        defer wfc.deinit();
+
+        var state = wfc.State.init(
+            // pattern width and height, 3 is a good starting value
+            n,
+            // options to control WFC, 0 if you don't want to enable any
+            wfc_optFlipH | wfc_optRotate | wfc_optEdgeFixV,
+            // byte size of a single pixel value
+            4,
+            // dimensions and bytes of the input image
+            srcW, srcH, (unsigned char*)src,
+            // dimensions and bytes of the output image
+            dstW, dstH,
+            null,
+        );
+        defer state.deinit();
+    }
+
+```
+
 ## How to use CLI and GUI tools
 
 ### Building
