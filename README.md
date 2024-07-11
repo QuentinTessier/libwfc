@@ -88,13 +88,13 @@ In your source:
         var state = wfc.State.init(
             // pattern width and height, 3 is a good starting value
             n,
-            // options to control WFC, 0 if you don't want to enable any
-            wfc_optFlipH | wfc_optRotate | wfc_optEdgeFixV,
+            // options to control WFC, .{} if you don't want to enable any. Uses zig's packed struct to represent bitfields
+            .{ .optFlipH = true, .optRotate = true, .optEdgeFixV = true },
             // byte size of a single pixel value
             4,
             // dimensions and bytes of the input image
             srcW, srcH, (unsigned char*)src,
-            // dimensions and bytes of the output image
+            // dimensions of the output image
             dstW, dstH,
             null,
         );
