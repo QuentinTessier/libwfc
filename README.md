@@ -49,7 +49,7 @@ This version has been tested using Zig 0.13.0.
 In your terminal:
 
 ```
-zig fetch --save=wfc https://github.com/QuentinTessier/libwfc/archive/${COMMIT_HASH}.tar.gz
+zig fetch --save https://github.com/QuentinTessier/libwfc/archive/${COMMIT_HASH}.tar.gz
 ```
 
 In `build.zig`:
